@@ -366,7 +366,7 @@ const products = [
   {
     _id: "029",
     name: "Women Saree – BrandK Unstitched (Pink)",
-    img: "https://rukminim2.flixcart.com-image/612/612/xif0q/sari/c/w/i/-original-imahfn5hyc329rqv.jpeg?q=70",
+    img: "https://rukminim2.flixcart.com/image/312/312/xif0q/sari/6/j/w/free-double-buti-wine-shree-ganesh-unstitched-original-imahc35faum7nvy5.jpeg?q=70",
     alt: "women saree pink unstitched",
     brand: "BrandK",
     newPrice: 549,
@@ -533,3 +533,4 @@ function addToCart(product) {
     alert(`${product.name} is already in the cart.`);
   }
 }
+
