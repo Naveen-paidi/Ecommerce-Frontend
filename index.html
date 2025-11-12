@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Home | Flash Shop</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header class="heading d-flex grow-shrink-basics align-center">
+      <div class="heading-title-icon d-flex grow-shrink-basics align-center">
+        <h1 class="heading-title">Flash Shop</h1>
+      </div>
+
+      <div class="d-flex align-center gap-lg">
+        <!-- Search Box -->
+        <div class="search-box-container relative">
+          <input class="search-box-input" placeholder="Search Products">
+          <span class="material-icons-outlined absolute top-0 left-0">search</span>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-dropdown-container">
+          <select id="category-filter" class="filter-dropdown">
+            <option value="all" selected>All</option>
+            <option value="men">Men</option>
+            <option value="women">Women</option>
+          </select>
+        </div>
+
+        <!-- Price Filter Dropdown -->
+        <div class="price-dropdown-container">
+          <select id="price-filter" class="price-dropdown">
+            <option value="all" selected>All Prices</option>
+            <option value="low">≤ 1000</option>
+            <option value="mid">1000–2000</option>
+            <option value="high">≥ 2000</option>
+          </select>
+        </div>
+
+      </div>
+
+      <nav class="navigation">
+        <ul class="list-non-bullet d-flex align-center gap">
+          <li class="list-item-inline">
+            <a href="./cart.html" class="link cursor">
+              <span class="nav-icon material-icons-outlined">shopping_cart</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <div class="d-flex wrap gap" id="products"></div>
+
+    <script src="data.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

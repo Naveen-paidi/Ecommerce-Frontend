@@ -1,0 +1,110 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart | Flash Shop</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="heading d-flex grow-shrink-basics align-center">
+    <div class="heading-title-icon d-flex grow-shrink-basics align-center">
+      <h1 class="heading-title">Flash Shop</h1>
+    </div>
+    <nav class="navigation">
+      <ul class="list-non-bullet d-flex align-center gap">
+        <li class="list-item-inline">
+          <a href="./index.html" class="link cursor">
+            <span class="nav-icon material-icons-outlined">home</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main -->
+  <main class="products-page">
+    <h2 class="heading-2">My Cart</h2>
+    <div id="cart-items" class="d-flex wrap gap"></div>
+    <div class="final-price">
+      <p>Total: Rs. <span id="total-price">0</span></p>
+    </div>
+  </main>
+
+  <script>
+    // Get cart from localStorage or empty array
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartContainer = document.getElementById("cart-items");
+    const totalPriceEl = document.getElementById("total-price");
+
+    // Function to render cart
+    function renderCart() {
+      cartContainer.innerHTML = "";
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = "<p>Your cart is empty!</p>";
+        totalPriceEl.innerText = "0";
+        return;
+      }
+
+      let total = 0;
+
+      cart.forEach(product => {
+        const card = document.createElement("div");
+        card.classList.add("card", "card-vertical", "d-flex", "direction-column", "shadow");
+
+        const imgContainer = document.createElement("div");
+        imgContainer.classList.add("card-image-container");
+
+        const img = document.createElement("img");
+        img.classList.add("card-image");
+        img.setAttribute("src", product.img);
+        img.setAttribute("alt", product.name);
+        imgContainer.appendChild(img);
+
+        const details = document.createElement("div");
+        details.classList.add("card-details");
+
+        const name = document.createElement("p");
+        name.classList.add("card-des");
+        name.innerText = product.name;
+        details.appendChild(name);
+
+        const price = document.createElement("p");
+        price.classList.add("card-price", "d-flex", "align-end", "gap-sm");
+        price.innerText = `Rs. ${product.newPrice}`;
+        details.appendChild(price);
+
+        // Remove button
+        const removeBtn = document.createElement("button");
+        removeBtn.classList.add("button", "btn-primary", "btn-icon", "d-flex", "align-center", "justify-center", "cursor");
+        removeBtn.innerText = "Remove";
+        removeBtn.addEventListener("click", () => removeFromCart(product._id));
+        details.appendChild(removeBtn);
+
+        card.appendChild(imgContainer);
+        card.appendChild(details);
+        cartContainer.appendChild(card);
+
+        total += product.newPrice;
+      });
+
+      totalPriceEl.innerText = total;
+    }
+
+    // Remove product from cart
+    function removeFromCart(id) {
+      cart = cart.filter(item => item._id !== id);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      renderCart();
+    }
+
+    // Initialize cart
+    renderCart();
+  </script>
+</body>
+</html>
